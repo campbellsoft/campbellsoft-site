@@ -38,23 +38,13 @@ const menuitems = [
           {
             menuitems.map((item, index) => (
               <>
-                {item.children && (
-                  <Dropdown
-                    title={item.title}
-                    children={item.children}
-                    lastItem={index === menuitems.length - 1}
-                  />
-                )}
-
-                {!item.children && (
-                  <li>
-                    <a
-                      href={item.path}
-                      class="flex lg:px-3 py-2 text-gray-600 hover:text-gray-900">
-                      {item.title}
-                    </a>
-                  </li>
-                )}
+                <li>
+                  <a
+                    href={item.path}
+                    class="flex lg:px-3 py-2 text-gray-600 hover:text-gray-900">
+                    {item.title}
+                  </a>
+                </li>
               </>
             ))
           }
