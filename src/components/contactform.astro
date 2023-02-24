@@ -2,26 +2,19 @@
 import Button from "./ui/button.astro";
 ---
 
-<form
-  action="https://api.web3forms.com/submit"
-  method="POST"
-  id="form"
-  class="needs-validation"
-  novalidate>
-  <input
-    type="hidden"
-    name="access_key"
-    value="ece3b4e0-e415-405d-b386-11a71eafe982"
-  />
-
-  <input type="checkbox" class="hidden" style="display:none" name="botcheck" />
+<form method="POST" name="contact" data-netlify="true">
   <div class="mb-5">
     <input
+      type="hidden"
+      name="subject"
+      value="Inquiry from mysitename.netlify.app"
+    />
+    <input
+      name="name"
       type="text"
       placeholder="Full Name"
       required
       class="w-full px-4 py-3 border-2 placeholder:text-gray-800 rounded-md outline-none focus:ring-4 border-gray-300 focus:border-gray-600 ring-gray-100"
-      name="name"
     />
     <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">
       Please provide your full name.
@@ -29,10 +22,9 @@ import Button from "./ui/button.astro";
   </div>
   <div class="mb-5">
     <label for="email_address" class="sr-only">Email Address</label><input
-      id="email_address"
+      name="email"
       type="email"
       placeholder="Email Address"
-      name="email"
       required
       class="w-full px-4 py-3 border-2 placeholder:text-gray-800 rounded-md outline-none focus:ring-4 border-gray-300 focus:border-gray-600 ring-gray-100"
     />
@@ -77,53 +69,3 @@ import Button from "./ui/button.astro";
     border-color: #dc3545;
   }
 </style>
-
-<script is:inline>
-  const form = document.getElementById("form");
-  const result = document.getElementById("result");
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    form.classList.add("was-validated");
-    if (!form.checkValidity()) {
-      form.querySelectorAll(":invalid")[0].focus();
-      return;
-    }
-    const formData = new FormData(form);
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
-
-    result.innerHTML = "Sending...";
-
-    fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: json,
-    })
-      .then(async (response) => {
-        let json = await response.json();
-        if (response.status == 200) {
-          result.classList.add("text-green-500");
-          result.innerHTML = json.message;
-        } else {
-          console.log(response);
-          result.classList.add("text-red-500");
-          result.innerHTML = json.message;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        result.innerHTML = "Something went wrong!";
-      })
-      .then(function () {
-        form.reset();
-        form.classList.remove("was-validated");
-        setTimeout(() => {
-          result.style.display = "none";
-        }, 5000);
-      });
-  });
-</script>
