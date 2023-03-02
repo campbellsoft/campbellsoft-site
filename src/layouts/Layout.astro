@@ -18,8 +18,8 @@ const resolvedImageWithDomain = new URL(
 const { title } = Astro.props;
 
 const makeTitle = title
-  ? title + " | " + "Campbell AI"
-  : "Campbell AI - software development";
+  ? title + " | " + "Campbell Software"
+  : "Campbell Software - application development";
 ---
 
 <!DOCTYPE html>
@@ -33,22 +33,22 @@ const makeTitle = title
     <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
     <SEO
       title={makeTitle}
-      description="Campbell AI is a new business for building software using artificial intelligence."
+      description="Campbell Software is a new business for building applications quickly."
       canonical={canonicalURL}
       twitter={{
         creator: "@rogercampbell",
-        site: "campbell.ai",
+        site: "campbellsoft.dev",
         card: "summary_large_image",
       }}
       openGraph={{
         basic: {
           url: canonicalURL,
           type: "website",
-          title: `Campbell AI`,
+          title: `Campbell Software`,
           image: resolvedImageWithDomain,
         },
         image: {
-          alt: "Campbell AI Screenshot",
+          alt: "Campbell Software Screenshot",
         },
       }}
     />

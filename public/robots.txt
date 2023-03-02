@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://campbell.ai/sitemap-index.xml
+Sitemap: https://campbellsoft.dev/sitemap-index.xml
